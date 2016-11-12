@@ -8,11 +8,11 @@
 	"version": "1.0",
 	"applications": {
 		"gecko": {
-			"id": "catgifs@mozilla.org"
+			"id": "attain.ai@uchi.me"
 		}
 	},
 	"background": {
-		"scripts": ["./js/background.js"],
+		"scripts": ["./js/background.js", "./js/analyzeText.js"],
 		"persistent": false
 	},
 	"permissions": ["tabs", "notifications", "http://*/", "https://*/"],

@@ -53,14 +53,15 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 			// code : 'document.body.outerHTML;'  //Gives you the whole HTML of the page
 		}, function(response) {
 			pageText = response[0];
-			console.log(pageText);
-			alert(pageText);
+			//console.log(pageText);
 			console.log(pageUrl);
 			console.log(pageTitle);
+			getKeyPhrases(pageText);
 		});
 
 	});
 });
+
 
 function getText() {
 	return document.body.innerText;
@@ -69,3 +70,4 @@ function getText() {
 function receiveText(resultsArray) {
 	console.log(resultsArray[0]);
 }
+

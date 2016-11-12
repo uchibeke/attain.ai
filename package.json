@@ -11,11 +11,14 @@
     "url": "git+https://github.com/uchibeke/attain.ai.git"
   },
   "author": "Uchi Uchibeke",
-  "license": "attain.ai licence: https://www.binpress.com/license/view/l/753ff4439db0b9db968fb6c39e2a390a",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/uchibeke/attain.ai/issues"
   },
   "homepage": "https://github.com/uchibeke/attain.ai#readme",
+  "dependencies": {
+    "node-summary": "^1.0.1"
+  },
   "devDependencies": {
     "gulp": "^3.9.1"
   }
