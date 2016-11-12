@@ -1,5 +1,9 @@
 {
 	"manifest_version": 2,
+	"icons": {
+		"48": "icon.png",
+		"128": "icon128.png"
+	},
 	"name": "attain.ai",
 	"version": "1.0",
 	"applications": {
@@ -11,8 +15,12 @@
 		"scripts": ["background.js"],
 		"persistent": false
 	},
-
+	"permissions": ["tabs"],
 	"browser_action": {
+		"default_icon": {
+			"19": "button.png",
+			"38": "button38.png"
+		},
 		"default_title": "attain.ai"
 	}
 }
