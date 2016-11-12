@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
 	"icons": {
-		"48": "icon.png",
-		"128": "icon128.png"
+		"48": "../image/icon.png",
+		"128": "../image/icon128.png"
 	},
 	"name": "attain.ai",
 	"version": "1.0",
@@ -18,8 +18,8 @@
 	"permissions": ["tabs"],
 	"browser_action": {
 		"default_icon": {
-			"19": "button.png",
-			"38": "button38.png"
+			"19": "../image/button.png",
+			"38": "../image/button38.png"
 		},
 		"default_title": "attain.ai"
 	}

@@ -2,7 +2,7 @@
   "name": "attain.ai",
   "version": "1.0.0",
   "description": "",
-  "main": "background.js",
+  "main": "js/background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/uchibeke/attain.ai.git"
   },
   "author": "Uchi Uchibeke",
-  "license": "ISC",
+  "license": "attain.ai licence: https://www.binpress.com/license/view/l/753ff4439db0b9db968fb6c39e2a390a",
   "bugs": {
     "url": "https://github.com/uchibeke/attain.ai/issues"
   },

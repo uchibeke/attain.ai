@@ -28,4 +28,4 @@ chrome.browserAction.onClicked.addListener(function(aTab) {
 			});
 		}
 	});
-});
+}); 

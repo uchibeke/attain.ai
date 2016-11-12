@@ -33,3 +33,4 @@ Coming soon
 ---
 
 ## License
+[attain.ai License](https://www.binpress.com/license/view/l/753ff4439db0b9db968fb6c39e2a390a)
