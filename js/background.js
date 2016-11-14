@@ -2,31 +2,9 @@
 
 /*global chrome:false */
 
-chrome.browserAction.setBadgeText({
-	text : '(My Awesome Addon)'
-});
 chrome.browserAction.setBadgeBackgroundColor({
 	color : 'black'
 });
-
-// chrome.browserAction.onClicked.addListener(function(aTab) {
-// chrome.tabs.query({'url': 'http://chilloutandwatchsomecatgifs.com/'}, (tabs) => {
-// if (tabs.length === 0) {
-// chrome.tabs.create({
-// 'url' : 'http://chilloutandwatchsomecatgifs.com/',
-// 'active' : true
-// });
-// } else {
-// chrome.tabs.query({'url': 'http://chilloutandwatchsomecatgifs.com/', 'active': true}, (active) => {
-// if (active.length === 0) {
-// chrome.tabs.update(tabs[0].id, {
-// 'active' : true
-// });
-// }
-// });
-// }
-// });
-// });
 
 var pageText,
     pageUrl,
@@ -50,10 +28,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 		chrome.tabs.executeScript(selectedTab.id, {
 			code : 'document.body.innerText;' //Gives you all the text on the page
-			// code : 'document.body.outerHTML;'  //Gives you the whole HTML of the page
+			//code : 'document.body.outerHTML;' //Gives you the whole HTML of the page
 		}, function(response) {
 			pageText = response[0];
-			//console.log(pageText);
 			console.log(pageUrl);
 			console.log(pageTitle);
 			getKeyPhrases(pageText);
@@ -61,7 +38,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 	});
 });
-
 
 function getText() {
 	return document.body.innerText;
@@ -71,3 +47,19 @@ function receiveText(resultsArray) {
 	console.log(resultsArray[0]);
 }
 
+
+// React when a browser action's icon is clicked.
+chrome.browserAction.onClicked.addListener(function(tab) {
+	var viewTabUrl = chrome.extension.getURL('popup.html');
+	var imageUrl = "../image/icon.png";
+
+	var views = chrome.extension.getViews();
+	for (var i = 0; i < views.length; i++) {
+		var view = views[i];
+		if (view.location.href == viewTabUrl && !view.imageAlreadySet) {
+			view.setImageUrl(imageUrl);
+			view.imageAlreadySet = true;
+			break;
+		}
+	}
+});

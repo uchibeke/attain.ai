@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var zip = require('gulp-zip');
 
-var files = ['manifest.json', './js/background.js', './js/analyzeText.js', '*/*.png', './node_modules/*'];
+var files = ['manifest.json', './js/*.js', '*/*.png', './node_modules/*/*'];
 var xpiName = 'attain.ai.xpi';
 
 gulp.task('default', function() {

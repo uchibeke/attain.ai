@@ -1,5 +1,9 @@
-function getSentiment(input) {
-	var request_url = 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment';
+// input:
+// text to parse
+// type of analysis to do: keyPhrases | sentiment
+function analyzeText(input, anaType) {
+	var request_url = 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/' + anaType;
+	var out = "";
 
 	// open a new request object
 	var request = new XMLHttpRequest();
@@ -17,12 +21,15 @@ function getSentiment(input) {
 	var requestBody = {};
 	requestBody.documents = [];
 	for (var i = 0; i < allDocs.length; i++) {
-		requestBody.documents.push({
-			"language" : "en",
-			"id" : i + 1,
-			"text" : allDocs[i]
-		});
+		if (allDocs[i].split(" ").length > 2) {
+			requestBody.documents.push({
+				"language" : "en",
+				"id" : i + 1,
+				"text" : allDocs[i].replace(/(?:\r\n|\r|\n)/g, "")
+			});
+		}
 	}
+	console.log(requestBody);
 
 	request.responseType = "json";
 
@@ -30,11 +37,28 @@ function getSentiment(input) {
 	request.onload = function() {
 		if (request.status !== 200) {
 			console.log("failed to get sentiment`");
+			console.log(request.response);
 			return null;
 		} else {
-			var sentimentJson = request.response;
+			out = request.response;
 			console.log("Response:\n");
-			console.log(sentimentJson);
+			console.log(out);
+			out = out.documents;
+			var postingKeywords = [];
+			for (var i = 0; i < out.length; i++) {
+				var item = out[i];
+				postingKeywords = postingKeywords.concat(item.keyPhrases);
+			}
+			postingKeywords = uniqArray(postingKeywords);
+
+			populateDiv(postingKeywords, "fromPosting");
+
+			var wordsFromResume = uniqArray(resumes.documents[0].keyPhrases);
+
+			populateDiv(wordsFromResume, "fromResume");
+
+			assignWeight(postingKeywords);
+
 			return 0;
 		}
 	};
@@ -43,48 +67,71 @@ function getSentiment(input) {
 	request.send(requestBody);
 }
 
+function uniqArray(arr) {
+	arr = arr.filter(function(e, i, arr) {
+		return arr.lastIndexOf(e) === i;
+	});
+	return arr;
+}
 
-function getKeyPhrases(input) {
-	var request_url = 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases';
+var firstClassTerms = [];
+var secondClassTerms = [];
+var thirdClassTerms = [];
 
-	// open a new request object
-	var request = new XMLHttpRequest();
-	request.open('POST', request_url, true);
+var resumes = [];
 
-	// set headers
-	request.setRequestHeader("Content-Type", "application/json");
-	request.setRequestHeader("Ocp-Apim-Subscription-Key", "88148d2194ee4870a6fdfff9ba20807f");
-	request.setRequestHeader("Accept", "application/json");
+function assignWeight(jobDesc) {
+	resumes = JSON.parse(JSON.stringify(resumes).toLowerCase().trim());
+	jobDesc = JSON.parse(JSON.stringify(jobDesc).toLowerCase().trim());
 
-	// Slipt page content by 2 new lines
-	var allDocs = input.split("\n\n");
+	for (var i = 0; i < resumes.documents.length; i++) {
+		var doc = resumes.documents[i];
+		for (var j = 0; j < doc.keyphrases.length; j++) {
+			var phrase = doc.keyphrases[j];
+			if (jobDesc.indexOf(phrase.trim()) != -1) {
+				firstClassTerms.push(phrase);
+			} else if (JSON.stringify(jobDesc).includes(phrase.trim())) {
+				secondClassTerms.push(phrase);
+			} else {
+				thirdClassTerms.push(phrase);
+			}
 
-	// set body.
-	var requestBody = {};
-	requestBody.documents = [];
-	for (var i = 0; i < allDocs.length; i++) {
-		requestBody.documents.push({
-			"language" : "en",
-			"id" : i + 1,
-			"text" : allDocs[i]
-		});
+		}
 	}
-	
-	request.responseType = "json";
+	console.log(firstClassTerms);
+	console.log(secondClassTerms);
+	console.log(thirdClassTerms);
 
-	requestBody = JSON.stringify(requestBody);
-	request.onload = function() {
-		if (request.status !== 200) {
-			console.log("failed to get sentiment`");
-			return null;
-		} else {
-			var sentimentJson = request.response;
-			console.log("Response:\n");
-			console.log(sentimentJson);
-			return 0;
+}
+
+function populateDiv(array, parentID) {
+
+	var d = document.createElement('div');
+	array.sort();
+
+	for (var i = 0; i < array.length; i++) {
+
+		var item = document.createElement('p');
+		item.appendChild(document.createTextNode(array[i].trim()));
+		d.appendChild(item);
+	}
+
+	document.getElementById(parentID).appendChild(d);
+}
+
+function loadJSON(callback) {
+	var xobj = new XMLHttpRequest();
+	xobj.overrideMimeType("application/json");
+	xobj.open('GET', 'js/sampleResume.json', true);
+	xobj.onreadystatechange = function() {
+		if (xobj.readyState == 4 && xobj.status == "200") {
+			callback(xobj.responseText);
 		}
 	};
-
-	// send the request
-	request.send(requestBody);
+	xobj.send(null);
 }
+
+loadJSON(function(response) {
+	resumes = JSON.parse(response);
+	console.log(resumes);
+});

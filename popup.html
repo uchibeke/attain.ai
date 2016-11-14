@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>attain.ai</title>
+
+		<link rel="stylesheet" href="bootstrap.min.css" >
+	</head>
+	<style>
+		#appHeader {
+			background: #FFAE49;
+			height: 60px;
+			width: 100%;
+			position: fixed;
+			top: 0;
+			right: 0;
+			padding-right: 50px;
+			padding-top: 0px;
+			color: white;
+			z-index: 2;
+			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		}
+		a, .btn, button {
+			background: #FFAE49;
+			color: white;
+		}
+		a:hover, .btn:hover, button:hover, a:active, .btn:active, button:active {
+			color: black !important;
+			background: white;
+		}
+
+		*:active, *:enabled {
+			outline: none;
+		}
+		a:focus {
+			outline: 0 !important;
+		}
+
+		.tab-pane {
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+	</style>
+	<body id="popBody">
+		<div id="appHeader" >
+			<h3 class="text-right">attain.ai</h3>
+		</div>
+		<div class="container-fluid center-block" style="padding-top: 70px;">
+
+			<ul class="nav nav-tabs text-center center-block">
+				<li class="active col-xs-4">
+					<a data-toggle="tab" href="#home">Home</a>
+				</li>
+				<li class=" col-xs-4">
+					<a data-toggle="tab" href="#resumes">Saved Resumes</a>
+				</li>
+				<li class=" col-xs-4">
+					<a data-toggle="tab" href="#savedJobs">Saved Jobs</a>
+				</li>
+			</ul>
+
+			<div class="tab-content col-xs-12">
+				<div id="home" class="tab-pane fade in active row">
+					<br />
+					<p>
+						attain.ai gives you the best resume for a job posting. It
+						measures open job postings against the content of your
+						and suggest the best resume to use for the job.
+					</p>
+					<button type="button" class="btn pull-right" id="attainBtn">
+						attain
+					</button>
+					<div class="clearfix"></div>
+					<hr />
+					<div class="row text-left center-block">
+						<div class="col-xs-6" >
+							<div>
+								<h4>Key Phrases from Resume:</h4>
+							</div>
+							<div id="fromResume"></div>
+						</div>
+						<div class="col-xs-6" >
+							<div>
+								<h4>Key Phrases from Job Posting:</h4>
+							</div>
+							<div id="fromPosting"></div>
+						</div>
+					</div>
+				</div>
+				<div id="resumes" class="tab-pane fade row">
+					<h3>Resumes</h3>
+					<p>
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</p>
+				</div>
+				<div id="savedJobs" class="tab-pane fade row">
+					<h3>Saved Jobs</h3>
+					<p>
+						Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="js/background.js"></script>
+		<script src="js/analyzeText.js"></script>
+		<script src="js/popup.js"></script>
+		<script src="js/jquery-3.1.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
