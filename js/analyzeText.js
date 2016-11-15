@@ -1,3 +1,4 @@
+// Analyze a text input from a webpage to get key phrase or dominant sentiment
 // input:
 // text to parse
 // type of analysis to do: keyPhrases | sentiment
@@ -104,6 +105,7 @@ function assignWeight(jobDesc) {
 
 }
 
+// Print keyPhrases from job posting and resume
 function populateDiv(array, parentID) {
 
 	var d = document.createElement('div');
@@ -119,6 +121,7 @@ function populateDiv(array, parentID) {
 	document.getElementById(parentID).appendChild(d);
 }
 
+// Local sample resume
 function loadJSON(callback) {
 	var xobj = new XMLHttpRequest();
 	xobj.overrideMimeType("application/json");

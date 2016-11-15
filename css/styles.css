@@ -1,0 +1,40 @@
+body {
+	font-family: 'Lato', 'Roboto', 'sans-serif';
+	font-size: 15px;
+}
+#appHeader {
+	background: #FFAE49;
+	height: 60px;
+	line-height:0;
+	width: 100%;
+	position: fixed;
+	padding-right: 50px;
+	padding-top: 0px;
+	color: white;
+	z-index: 2;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+a {
+	background: #FFAE49;
+	color: white;
+}
+.btn, button {
+	background: #FF8E00;
+	color: white;
+}
+a:hover, .btn:hover, button:hover, a:active, .btn:active, button:active {
+	color: black !important;
+	background: white;
+}
+
+*:active, *:enabled {
+	outline: none;
+}
+a:focus {
+	outline: 0 !important;
+}
+
+.tab-pane {
+	padding-left: 30px;
+	padding-right: 30px;
+}

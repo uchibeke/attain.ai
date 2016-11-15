@@ -5,43 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>attain.ai</title>
 
-		<link rel="stylesheet" href="bootstrap.min.css" >
+		<link rel="stylesheet" href="css/bootstrap.min.css" >
+		<link rel="stylesheet" href="css/styles.css" >
+		<link rel="stylesheet" type="text/css" href="css/lato.css">
 	</head>
-	<style>
-		#appHeader {
-			background: #FFAE49;
-			height: 60px;
-			width: 100%;
-			position: fixed;
-			top: 0;
-			right: 0;
-			padding-right: 50px;
-			padding-top: 0px;
-			color: white;
-			z-index: 2;
-			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-		}
-		a, .btn, button {
-			background: #FFAE49;
-			color: white;
-		}
-		a:hover, .btn:hover, button:hover, a:active, .btn:active, button:active {
-			color: black !important;
-			background: white;
-		}
-
-		*:active, *:enabled {
-			outline: none;
-		}
-		a:focus {
-			outline: 0 !important;
-		}
-
-		.tab-pane {
-			padding-left: 30px;
-			padding-right: 30px;
-		}
-	</style>
 	<body id="popBody">
 		<div id="appHeader" >
 			<h3 class="text-right">attain.ai</h3>
@@ -64,9 +31,7 @@
 				<div id="home" class="tab-pane fade in active row">
 					<br />
 					<p>
-						attain.ai gives you the best resume for a job posting. It
-						measures open job postings against the content of your
-						and suggest the best resume to use for the job.
+						attain.ai analyzes a job posting and recommends the best resume for the job
 					</p>
 					<button type="button" class="btn pull-right" id="attainBtn">
 						attain
@@ -77,12 +42,14 @@
 						<div class="col-xs-6" >
 							<div>
 								<h4>Key Phrases from Resume:</h4>
+								<hr />
 							</div>
 							<div id="fromResume"></div>
 						</div>
 						<div class="col-xs-6" >
 							<div>
 								<h4>Key Phrases from Job Posting:</h4>
+								<hr />
 							</div>
 							<div id="fromPosting"></div>
 						</div>

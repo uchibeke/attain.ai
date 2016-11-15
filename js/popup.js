@@ -8,14 +8,12 @@ var jsonOutput = "";
 
 document.addEventListener('DOMContentLoaded', function() {
 	var link = document.getElementById('attainBtn');
-	// onClick's logic below:
-	console.log("Click works");
 	link.addEventListener('click', function() {
-		textFunction();
+		anaylyzeJobPosting();
 	});
 });
 
-function textFunction() {
+function anaylyzeJobPosting() {
 	console.log("Working!");
 	console.log('Injecting content script(s)');
 	var selectedTab = "";
@@ -42,9 +40,4 @@ function textFunction() {
 
 	});
 	;
-}
-
-console.log("Seen popup.html");
-function setImageUrl(url) {
-	document.getElementById('target').src = url;
 }
