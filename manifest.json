@@ -2,9 +2,10 @@
 	"manifest_version": 2,
 	"icons": {
 		"48": "image/icon.png",
-		"128": "image/icon128.png"
+		"128": "image/icon.png"
 	},
 	"name": "attain.ai",
+	"description": "attain.ai analyzes a job posting and recommends the best resume for the job",
 	"version": "1.0",
 	"applications": {
 		"gecko": {
@@ -12,11 +13,11 @@
 		}
 	},
 	"background": {
-		"scripts": ["./js/background.js", "./js/analyzeText.js", "./js/popup.js", "./js/jquery-3.1.0.min.js", "./js/bootstrap.min.js"],
+		"scripts": ["/js/background.js", "/js/analyzeText.js", "/js/popup.js", "/js/jquery-3.1.0.min.js", "/js/bootstrap.min.js"],
 		"persistent": false
 	},
 	"permissions": ["tabs", "notifications", "http://*/", "https://*/", "file://*/", "file:///*/", "contextMenus"],
-	"web_accessible_resources": ["*.html", "image/*.png", "js/*.js", "js/*.json"],
+	"web_accessible_resources": ["*.html", "image/*.png", "js/*.js", "css/*.css", "js/*.json"],
 	"browser_action": {
 		"default_icon": {
 			"19": "image/icon.png",
